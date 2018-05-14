@@ -1,0 +1,13 @@
+[run]
+branch = true
+source = etools_validator
+
+[report]
+fail_under = 50
+ignore_errors = True
+exclude_lines =
+   pragma: no cover
+
+[html]
+directory = build/coverage
+title = Validator Coverage report
