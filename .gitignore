@@ -2,7 +2,6 @@
 *.py[co]
 .coverage
 build/
-test*.txt
 dist/
 coverage.xml
 .DS_Store

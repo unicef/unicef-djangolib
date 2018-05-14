@@ -1,9 +1,9 @@
 [run]
 branch = true
-source = etools_validator
+source = unicef_djangolib
 
 [report]
-fail_under = 50
+fail_under = 95
 ignore_errors = True
 exclude_lines =
    pragma: no cover

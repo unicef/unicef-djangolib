@@ -1,2 +1,2 @@
 NAME = 'unicef-djangolib'
-VERSION = __version__ = "0.1.0a0"
+VERSION = __version__ = "0.1.0"
