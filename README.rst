@@ -28,7 +28,7 @@ Links
                     :target: https://circleci.com/gh/unicef/unicef-djangolib/tree/master
 
 
-.. |dev-cov| image:: https://circleci.com/gh/unicef/etools-validator/tree/develop.svg?style=svg
+.. |dev-cov| image:: https://circleci.com/gh/unicef/unicef-djangolib/tree/develop.svg?style=svg
                     :target: https://circleci.com/gh/unicef/unicef-djangolib/tree/develop
 
 
