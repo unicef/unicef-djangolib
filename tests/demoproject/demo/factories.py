@@ -16,7 +16,7 @@ class DemoChildModelFactory(factory.django.DjangoModelFactory):
     parent = factory.SubFactory(DemoModelFactory)
 
     class Meta:
-        model = models.DemoChildModel
+        model = models.DemoModel
 
 
 class UserFactory(factory.django.DjangoModelFactory):
