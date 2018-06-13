@@ -5,6 +5,7 @@ from unicef_djangolib.drf.permissions import IsSuperUser
 
 from demo.sample.models import DemoModel
 from demo.sample.serializers import DemoModelSerializer
+from unicef_djangolib.renderers import FriendlyCSVRenderer
 
 
 class DemoListAPIView(ListAPIView):
@@ -13,4 +14,4 @@ class DemoListAPIView(ListAPIView):
     queryset = DemoModel.objects.all()
     serializer_class = DemoModelSerializer
     permission_classes = (IsSuperUser, )
-    renderer_classes = (JSONRenderer, )
+    renderer_classes = (JSONRenderer, FriendlyCSVRenderer)
