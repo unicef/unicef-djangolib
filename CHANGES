@@ -1,0 +1,12 @@
+Release 0.2
+----------------
+* added CurrencyField and QuarterField
+* added AutoSizeTextForm
+* added DRF IsSuperUser permission
+* added FriendlyCSVRenderer
+* added QueryStringFilterAPIView
+
+
+Release 0.1
+----------------
+* Initial release
