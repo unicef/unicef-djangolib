@@ -8,4 +8,3 @@ class DemoModel(models.Model):
     boolean_field = models.BooleanField(default=False)
     currency = CurrencyField()
     quarter = QuarterField()
-

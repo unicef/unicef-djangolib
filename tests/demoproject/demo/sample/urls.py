@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 from demo.views import DemoListAPIView
+
 from .api import DemoCreateView, DemoUpdateView
 
 app_name = "sample"

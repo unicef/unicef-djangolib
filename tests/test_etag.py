@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-from mock import Mock, patch
+from mock import Mock
 
 from unicef_djangolib.etag import etag_cached
 

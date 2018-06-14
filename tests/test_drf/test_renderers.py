@@ -1,10 +1,10 @@
-import pytest
-from rest_framework.test import APIRequestFactory, force_authenticate
+from rest_framework.test import APIClient
 from tablib import Dataset
 
-from demo.factories import UserFactory, DemoModelFactory
-from demo.views import DemoListAPIView
-from rest_framework.test import APIClient
+import pytest
+
+from demo.factories import DemoModelFactory, UserFactory
+
 
 @pytest.mark.django_db
 def test_friendly_renderer():
