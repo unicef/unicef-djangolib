@@ -1,6 +1,7 @@
 Release 0.3
 ----------------
 * added ExportModelView
+* tweaked QueryStringFilterAPIView, added possibility to customize filters
 
 
 Release 0.2
