@@ -1,3 +1,8 @@
+Release 0.3
+----------------
+* added ExportModelView
+
+
 Release 0.2
 ----------------
 * added CurrencyField and QuarterField

@@ -1,4 +1,3 @@
-from rest_framework.generics import ListAPIView
 from rest_framework.renderers import JSONRenderer
 
 from unicef_djangolib.drf.permissions import IsSuperUser
@@ -7,9 +6,10 @@ from unicef_djangolib.drf.views import QueryStringFilterAPIView
 
 from demo.sample.models import DemoModel
 from demo.sample.serializers import DemoModelSerializer
+from unicef_djangolib.drf.exports import ExportModelView
 
 
-class DemoListAPIView(QueryStringFilterAPIView, ListAPIView):
+class DemoListAPIView(QueryStringFilterAPIView, ExportModelView):
     """Returns a list of DemoModel objects"""
 
     queryset = DemoModel.objects.all()

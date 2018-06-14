@@ -16,7 +16,7 @@ class QueryStringFilterAPIView(GenericAPIView):
         for param_filter, query_filter in self.filters:
             if param_filter in self.request.query_params:
                 value = self.request.query_params.get(param_filter)
-                if query_filter.endswith(('__in')):
+                if query_filter.endswith('__in'):
                     value = value.split(',')
                 queries.append(Q(**{query_filter: value}))
         return queries
