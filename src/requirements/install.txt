@@ -1,0 +1,5 @@
+django-fsm>=2.4.0
+django>=1.10.8
+djangorestframework>=3.5.3
+djangorestframework-csv
+django-model-utils>=2.6

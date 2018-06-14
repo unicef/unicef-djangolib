@@ -1,0 +1,13 @@
+[run]
+branch = true
+source = unicef_djangolib
+
+[report]
+fail_under = 95
+ignore_errors = True
+exclude_lines =
+   pragma: no cover
+
+[html]
+directory = build/coverage
+title = Validator Coverage report
