@@ -11,21 +11,23 @@ class QueryStringFilterAPIView(GenericAPIView):
     filters = ()
     search_terms = ()
 
-    def filter_params(self):
+    def filter_params(self, filters=None):
+        filters = filters or self.filters
         queries = []
-        for param_filter, query_filter in self.filters:
+        for param_filter, query_filter in filters:
             if param_filter in self.request.query_params:
                 value = self.request.query_params.get(param_filter)
-                if query_filter.endswith(('__in')):
+                if query_filter.endswith('__in'):
                     value = value.split(',')
                 queries.append(Q(**{query_filter: value}))
         return queries
 
-    def search_params(self):
+    def search_params(self, search_terms=None):
+        search_terms = search_terms or self.search_terms
         search_term = self.request.query_params.get(self.search_param)
         search_query = Q()
         if self.search_param in self.request.query_params:
-            for param_filter in self.search_terms:
+            for param_filter in search_terms:
                 q = Q(**{param_filter: search_term})
                 search_query = search_query | q
         return search_query

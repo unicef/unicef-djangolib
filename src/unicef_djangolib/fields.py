@@ -49,4 +49,4 @@ class QuarterField(models.CharField):
         kwargs['choices'] = self.QUARTERS
         kwargs['null'] = kwargs.get('null', True)
         kwargs['blank'] = kwargs.get('blank', True)
-        super(models.CharField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
