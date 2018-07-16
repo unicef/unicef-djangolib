@@ -1,12 +1,12 @@
 from rest_framework.renderers import JSONRenderer
 
+from unicef_djangolib.drf.exports import ExportModelView
 from unicef_djangolib.drf.permissions import IsSuperUser
 from unicef_djangolib.drf.renderers import FriendlyCSVRenderer
 from unicef_djangolib.drf.views import QueryStringFilterAPIView
 
 from demo.sample.models import DemoModel
 from demo.sample.serializers import DemoModelSerializer
-from unicef_djangolib.drf.exports import ExportModelView
 
 
 class DemoListAPIView(QueryStringFilterAPIView, ExportModelView):
