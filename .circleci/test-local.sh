@@ -26,8 +26,6 @@ dump(){
     echo "tag:     $TAG"
     echo "job:     $JOB"
     echo "verbose: $VERBOSE"
-
-
 }
 
 . $BASE/common.sh
