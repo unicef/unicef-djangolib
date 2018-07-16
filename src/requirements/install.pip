@@ -1,0 +1,8 @@
+django-fsm
+django-model-utils
+django
+djangorestframework-csv
+djangorestframework
+pytz
+six
+unicodecsv
