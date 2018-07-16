@@ -20,6 +20,7 @@ pytest-django = "*"
 pytest-echo = "*"
 pytest-pythonpath = "*"
 tablib = "*"
+pdbpp = "*"
 
 [requires]
 python_version = "3.6"

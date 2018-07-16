@@ -112,7 +112,7 @@ setup(name=NAME,
           'Intended Audience :: Developers'],
       scripts=[],
       cmdclass={
-          'sdist': SDistCommand,
+          # 'sdist': SDistCommand,
           "verify": VerifyTagVersion,
       }
 )

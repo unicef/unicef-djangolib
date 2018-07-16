@@ -60,6 +60,10 @@ case $1 in
         shift # past argument
         shift # past value
         ;;
+    --dry-run|--dryrun)
+        DRYRUN="1"
+        shift # past argument
+        ;;
     -h|--help)
             help
             ;;
@@ -69,10 +73,14 @@ case $1 in
 esac
 done
 
-BRANCH="${BRANCH/\//%2F}"
+#BRANCH="${BRANCH/\//%2F}"
 
 if [ "$VERBOSE" -gt "0" ]; then
     dump
+fi
+
+if [ "$DRYRUN" == "1" ];then
+    exit 0
 fi
 
 if [ -z "$GITHUB_TOKEN" ]; then
@@ -84,13 +92,4 @@ if [ -z "$TAG" ]; then
       -s \
       -H "Authorization: token ${GITHUB_TOKEN}" \
       "https://api.github.com/repos/unicef/sir-poc-fe/releases/latest" | jq -r '.tag_name'`
-
 fi
-
-circleci build  -c $CONFIG \
-    --job $JOB \
-    -e CIRCLE_BUILD_NUM=$RANDOM \
-    -e TAG=$TAG \
-    -e GITHUB_TOKEN=$GITHUB_TOKEN \
-    -v "$PWD:/home/circleci/code" \
-    --branch=$BRANCH
