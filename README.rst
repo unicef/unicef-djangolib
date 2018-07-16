@@ -6,6 +6,7 @@ Installation
 ------------
 
 .. code-block:: bash
+
     pip install unicef-djangolib
 
 
@@ -15,6 +16,7 @@ Setup
 Add ``unicef_djangolib`` to ``INSTALLED_APPS`` in settings
 
 .. code-block:: bash
+
     INSTALLED_APPS = [
         ...
         'unicef_djangolib',
@@ -35,17 +37,19 @@ Environment Setup
 To install the necessary libraries
 
 .. code-block:: bash
+
     $ make install
 
 
 Coding Standards
 ~~~~~~~~~~~~~~~~
 
-See `PEP 8 Style Guide for Python Code <https://www.python.org/dev/peps/pep-0008/>_` for complete details on the coding standards.
+See `PEP 8 Style Guide for Python Code <https://www.python.org/dev/peps/pep-0008/>`_ for complete details on the coding standards.
 
 To run checks on the code to ensure code is in compliance
 
 .. code-block:: bash
+
     $ make lint
 
 
@@ -55,6 +59,7 @@ Testing
 Testing is important and tests are located in `tests/` directory and can be run with;
 
 .. code-block:: bash
+
     $ make test
 
 Coverage report is viewable in `build/coverage` directory, and can be generated with;
