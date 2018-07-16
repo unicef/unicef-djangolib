@@ -45,6 +45,7 @@ jobs:
                 export BRANCH="${CIRCLE_BRANCH/\//%2F}"
                 env | sort
                 curl --user "${CIRCLE_TOKEN}:" \
+                  --fail \
                   --data build_parameters[CIRCLE_JOB]=tag \
                   --data build_parameters[CIRCLE_TAG]=$TAG \
                   --data revision=$CIRCLE_SHA1 \
