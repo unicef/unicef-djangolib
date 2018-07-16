@@ -40,12 +40,30 @@ def check(cmd, filename):
     reqs = codecs.open(os.path.join(ROOT, f), 'r').readlines()
     existing = {re.split("(==|>=|<=>|<|)", name[:-1])[0] for name in reqs}
     declared = {re.split("(==|>=|<=>|<|)", name)[0] for name in out.stdout.decode('utf8').split("\n") if name and not name.startswith('-')}
+    # existing = {name[:-1] for name in reqs if name and not name.startswith('-')}
+    # declared = {name for name in out.stdout.decode('utf8').split("\n") if name and not name.startswith('-')}
+    if existing - declared:
+        error = f"Unknown libraries: {existing-declared}"
+    else:
+        error = f"Missing libraries: {declared-existing}"
 
-    if existing != declared:
-        msg = """Requirements file not updated.
-Run 'make requiremets'
-""".format(' '.join(cmd), f)
-        raise DistutilsError(msg)
+        if existing != declared:
+            msg = f"""Requirements file not updated.
+
+    {error}
+
+    To fix run:
+
+    {' '.join(cmd)} > {f}
+
+    """
+            raise DistutilsError(msg)
+
+#     if existing != declared:
+#         msg = """Requirements file not updated.
+# Run 'make requiremets'
+# """.format(' '.join(cmd), f)
+#         raise DistutilsError(msg)
 
 class SDistCommand(BaseSDistCommand):
 
