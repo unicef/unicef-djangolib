@@ -38,12 +38,12 @@ if [ -z "$TAG" ]; then
 
 fi
 
-circleci build  -c $CONFIG \
-    --job $JOB \
-    -e CIRCLE_BUILD_NUM=$RANDOM \
-    -e TAG=$TAG \
-    -e CIRCLE_PROJECT_USERNAME=unicef \
-    -e CIRCLE_PROJECT_REPONAME=unicef-djangolib \
-    -e GITHUB_TOKEN=$GITHUB_TOKEN \
-    --branch=$BRANCH \
-#    -v "$PWD:/home/circleci/code"
+curl --user "${CIRCLE_TOKEN}:" \
+    --request POST \
+    -q \
+    --form build_parameters[TAG]=$TAG \
+    --form build_parameters[CIRCLE_JOB]=$JOB \
+    --form config=@config.yml \
+    --form notify=false \
+        https://circleci.com/api/v1.1/project/github/bitcaster-io/bitcaster/tree/$BRANCH
+

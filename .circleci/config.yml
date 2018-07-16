@@ -22,7 +22,7 @@ jobs:
           command: |
             pip install tox --user
             export PATH=~/.local/bin:$PATH
-            tox -r
+            tox
       - store_artifacts:
           path: ~build/coverage
           destination: coverage
@@ -42,10 +42,14 @@ jobs:
           name: tag and release if release candidate
           command: |
               if [[ $CIRCLE_BRANCH == $RELEASE_MATCH ]]; then
-                curl --user ${CIRCLE_TOKEN}: \
+                export BRANCH="${CIRCLE_BRANCH/\//%2F}"
+                env | sort
+                curl --user "${CIRCLE_TOKEN}:" \
+                  --fail \
                   --data build_parameters[CIRCLE_JOB]=tag \
+                  --data build_parameters[CIRCLE_TAG]=$TAG \
                   --data revision=$CIRCLE_SHA1 \
-                  https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
+                  https://circleci.com/api/v1.1/project/github/unicef/unicef-djangolib/tree/$BRANCH
               else
                 echo "Skipped as '$CIRCLE_BRANCH' does not match '$RELEASE_MATCH' branch"
               fi
@@ -58,12 +62,15 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "36:e1:ae:c3:f2:0f:27:67:85:44:78:5d:ec:2f:b2:0d"
+            - "bc:ec:f3:95:b8:21:dd:1a:a9:78:0b:1e:58:b8:bd:9e"
       - run:
           name: package and release
           command: |
             export PATH=/home/circleci/.local/bin:$PATH
             export TAG=${TAG:=${CIRCLE_BRANCH#*/}}
+            export CIRCLE_TAG=${TAG}
+            python setup.py verify
+
             git status
             git reset --hard
 
