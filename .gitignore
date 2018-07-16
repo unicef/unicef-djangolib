@@ -5,6 +5,8 @@ build/
 dist/
 coverage.xml
 .DS_Store
+*.sqlite
+.pytest_cache
 .idea/
 .pytest_cache/
 tests/demoproject/db.sqlite3
