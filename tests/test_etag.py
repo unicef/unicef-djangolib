@@ -1,4 +1,4 @@
-from mock import Mock
+from unittest.mock import Mock
 
 from unicef_djangolib.etag import etag_cached
 
