@@ -85,6 +85,16 @@ jobs:
             git push --verbose --tags
             git push origin --verbose --delete release/$TAG
       - run:
+          name: init .pypirc
+          command: |
+            echo -e "[distutils]" >> ~/.pypirc
+            echo -e "index-servers =" >> ~/.pypirc
+            echo -e "    pypi" >> ~/.pypirc
+            echo -e "" >> ~/.pypirc
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username: $PYPI_USERNAME" >> ~/.pypirc
+            echo -e "password: $PYPI_PASSWORD" >> ~/.pypirc
+      - run:
           name: release
           command: |
             export TAG=${TAG:=${CIRCLE_BRANCH#*/}}
@@ -115,43 +125,3 @@ jobs:
             git checkout $TAG
             pip install twine --user
             twine upload dist/*
-
-#      - deploy:
-#          name: dockerize
-#          command: |
-#              if [[ $CIRCLE_BRANCH == $RELEASE_MATCH ]]; then
-#                curl --user ${CIRCLE_TOKEN}: \
-#                  --data build_parameters[TAG]=$TAG \
-#                  --data build_parameters[JOB]=backend \
-#                  https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/sir-releases/tree/develop
-#              else
-#                echo "Skipped as '$CIRCLE_BRANCH' does not match '$RELEASE_MATCH' branch"
-#              fi
-#  package:
-#    working_directory: ~/code
-#    docker:
-#      - image: circleci/python:3.6
-#    steps:
-#      - checkout
-#      - run:
-#          name: create main virtualenv, install requirements
-#          command: |
-#            pip install pipenv --user
-#      - run:
-#          name: verify git tag vs version
-#          command: |
-#            pipenv run setup.py verify
-#      - run:
-#          name: init .pypirc
-#          command: |
-#            echo -e "[distutils]" >> ~/.pypirc
-#            echo -e "index-servers =" >> ~/.pypirc
-#            echo -e "    pypi" >> ~/.pypirc
-#            echo -e "" >> ~/.pypirc
-#            echo -e "[pypi]" >> ~/.pypirc
-#            echo -e "username: $PYPI_USERNAME" >> ~/.pypirc
-#            echo -e "password: $PYPI_PASSWORD" >> ~/.pypirc
-##      - run:
-##          name: create and upload package
-##          command: |
-##            env1/bin/activate/python setup.py sdist upload
