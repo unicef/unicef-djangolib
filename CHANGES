@@ -1,3 +1,13 @@
+Release 0.5
+----------------
+* removed rest framework dependencies
+
+
+Release 0.4
+----------------
+* pipenv support
+
+
 Release 0.3
 ----------------
 * added ExportModelView

@@ -7,6 +7,27 @@ from factory import fuzzy
 from demo.sample import models
 
 
+class ImageFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = models.Image
+
+
+class AuthorFactory(factory.django.DjangoModelFactory):
+    first_name = factory.Faker("first_name")
+    last_name = factory.Faker("last_name")
+
+    class Meta:
+        model = models.Author
+
+
+class BookFactory(factory.django.DjangoModelFactory):
+    name = factory.Faker("name")
+    author = factory.SubFactory(AuthorFactory)
+
+    class Meta:
+        model = models.Book
+
+
 class DemoModelFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.DemoModel

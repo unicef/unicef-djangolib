@@ -4,30 +4,86 @@ jobs:
     working_directory: ~/code
     docker:
       - image: circleci/python:3.6
+        environment:
+          DATABASE_URL: "postgres://postgres:postgres@127.0.0.1:5432/bitcaster"
+          RELEASE_MATCH: "release/*"
     steps:
+      - restore_cache:
+          keys:
+            - source-{{ .Branch }}-{{ .Revision }}
+
       - checkout
+      - restore_cache:
+          keys:
+            - deps-v2-{{ checksum "Pipfile.lock" }}
+
       - run:
           name: run tests
           command: |
-            pip install tox
-            tox -r
-  package:
-    working_directory: ~/code
+            pip install tox --user
+            export PATH=~/.local/bin:$PATH
+            tox
+      - store_artifacts:
+          path: ~build/coverage
+          destination: coverage
+
+      - save_cache:
+          key: source-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - ".git"
+
+      - save_cache:
+          key: deps-v2-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".venv"
+            - "~/.cache/pip"
+
+      - deploy:
+          name: tag and release if release candidate
+          command: |
+              if [[ $CIRCLE_BRANCH == $RELEASE_MATCH ]]; then
+                export BRANCH="${CIRCLE_BRANCH/\//%2F}"
+                env | sort
+                curl --user "${CIRCLE_TOKEN}:" \
+                  --fail \
+                  --data build_parameters[CIRCLE_JOB]=tag \
+                  --data build_parameters[CIRCLE_TAG]=$TAG \
+                  --data revision=$CIRCLE_SHA1 \
+                  https://circleci.com/api/v1.1/project/github/unicef/unicef-djangolib/tree/$BRANCH
+              else
+                echo "Skipped as '$CIRCLE_BRANCH' does not match '$RELEASE_MATCH' branch"
+              fi
+  tag:
     docker:
       - image: circleci/python:3.6
+        environment:
+          API_URL: https://api.github.com/repos/unicef/unicef-djangolib
     steps:
       - checkout
-#      - run:
-#          name: create main virtualenv, install requirements
-#          command: |
-#            python3 -m venv env1
-#            . env1/bin/activate
-#            pip install -r requirements/dev.txt
+      - add_ssh_keys:
+          fingerprints:
+            - "bc:ec:f3:95:b8:21:dd:1a:a9:78:0b:1e:58:b8:bd:9e"
       - run:
-          name: verify git tag vs version
+          name: package and release
           command: |
-#            . env1/bin/activate
-            env1/bin/activate/python3 setup.py verify
+            export PATH=/home/circleci/.local/bin:$PATH
+            export TAG=${TAG:=${CIRCLE_BRANCH#*/}}
+            export CIRCLE_TAG=${TAG}
+            python setup.py verify
+
+            git status
+            git reset --hard
+
+            git config user.email "ci@unicef.org"
+            git config user.name "CI"
+
+            git checkout master
+            git merge --no-ff release/$TAG -m "merge release/$TAG"
+            git tag -a -m "v$TAG" $TAG
+            git checkout develop
+            git merge --no-ff release/$TAG -m "merge release/$TAG"
+            git push --verbose --tags
+            git push origin --verbose --delete release/$TAG
       - run:
           name: init .pypirc
           command: |
@@ -39,24 +95,33 @@ jobs:
             echo -e "username: $PYPI_USERNAME" >> ~/.pypirc
             echo -e "password: $PYPI_PASSWORD" >> ~/.pypirc
       - run:
-          name: create and upload package
+          name: release
           command: |
-#            . env1/bin/activate
-            env1/bin/activate/python setup.py sdist upload
+            export TAG=${TAG:=${CIRCLE_BRANCH#*/}}
+            export TODAY=`date '+%d %B %Y at %H:%M'`
+            function is_pre()
+            {
+                [[ "$(echo "$TAG" | sed 's/[0-9.]//g')" == "" ]] && echo false || echo true
+            }
+            function data() {
+            cat <<EOF
+            { "tag_name": "$TAG",
+              "name": "v$TAG",
+              "body": "version $TAG - Built on $TODAY",
+              "draft": false,
+              "prerelease": $(is_pre)
+            }
+            EOF
+            }
+            data=$(data)
+            curl -X POST -s \
+              --fail --verbose \
+              -H "Accept: application/json" \
+              -H "Content-Type:application/json" \
+              -H "Authorization: token ${GITHUB_TOKEN}" \
+              ${API_URL}/releases \
+              -d "$data"
 
-workflows:
-  version: 2
-  build_and_package:
-    jobs:
-      - build:
-          filters:
-            tags:
-              only: /.*/
-      - package:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
+            git checkout $TAG
+            pip install twine --user
+            twine upload dist/*

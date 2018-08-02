@@ -1,13 +1,27 @@
-include setup.py
+include README.md
+include CHANGES
 include LICENSE
-include README.rst
+include MANIFEST.in
+include tox.ini
+include Pipfile.lock
+include Pipfile
+include src
 
-exclude pytest.ini
-exclude tox.ini
-exclude .isort.cfg
-exclude .flake8
+exclude .tox
+exclude .jshintrc
+exclude Makefile
+exclude manage.py
+exclude tests
 
-recursive-include src  *
-
+prune .circleci
 prune tests
-prune .circlecix
+
+recursive-include src/unicef_djangolib *.*
+recursive-include src/requirements *.pip
+recursive-exclude tests *
+recursive-include docs *
+
+exclude deploy
+exclude hooks
+recursive-exclude deploy *
+recursive-exclude hooks *
