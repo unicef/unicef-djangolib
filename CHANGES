@@ -5,7 +5,7 @@ Release 0.5.2
 
 Release 0.5.1
 ----------------
-* removed etag functionality [backward incompatible]
+* removed etag functionality [moved to djanfobackward incompatible]
 
 
 Release 0.5
