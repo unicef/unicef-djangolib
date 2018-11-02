@@ -1,3 +1,13 @@
+Release 0.5.2
+----------------
+* removed YER1 currency
+
+
+Release 0.5.1
+----------------
+* removed etag functionality [backward incompatible]
+
+
 Release 0.5
 ----------------
 * removed rest framework dependencies
