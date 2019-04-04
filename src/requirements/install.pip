@@ -2,5 +2,4 @@ django-fsm
 django-model-utils
 django
 pytz
-six
-unicodecsv
+sqlparse
