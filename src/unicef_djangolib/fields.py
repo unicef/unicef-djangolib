@@ -4,7 +4,7 @@ from django.utils.functional import cached_property
 from model_utils import Choices
 
 CURRENCY_LIST = [
-    u'GIP', u'KPW', u'XEU', u'BHD', u'BIF', u'BMD', u'BSD', u'YER1', u'AFN', u'ALL', u'AMD', u'AUD', u'AZN', u'BAM',
+    u'GIP', u'KPW', u'XEU', u'BHD', u'BIF', u'BMD', u'BSD', u'AFN', u'ALL', u'AMD', u'AUD', u'AZN', u'BAM',
     u'BBD', u'BDT', u'BZD', u'CUP1', u'BTN', u'ZWL', u'AWG', u'CUC', u'VEF01', u'BND', u'BRL', u'ARS', u'ETB', u'EUR',
     u'FJD', u'GBP', u'GEL', u'GHS', u'GNF', u'GTQ', u'GYD', u'HNL', u'CAD', u'CDF', u'CLP', u'CNY', u'COP', u'CRC',
     u'CUP', u'CVE', u'DJF', u'DKK', u'DOP', u'DZD', u'EGP', u'HRK', u'LVL', u'LYD', u'MAD', u'MGA', u'MKD', u'KWD',
