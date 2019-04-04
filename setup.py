@@ -39,40 +39,26 @@ def check(cmd, filename):
     f = os.path.join('src', 'requirements', filename)
     reqs = codecs.open(os.path.join(ROOT, f), 'r').readlines()
     existing = {re.split("(==|>=|<=>|<|)", name[:-1])[0] for name in reqs}
-    declared = {re.split("(==|>=|<=>|<|)", name)[0] for name in out.stdout.decode('utf8').split("\n") if name and not name.startswith('-')}
-    # existing = {name[:-1] for name in reqs if name and not name.startswith('-')}
-    # declared = {name for name in out.stdout.decode('utf8').split("\n") if name and not name.startswith('-')}
-    if existing - declared:
-        error = f"Unknown libraries: {existing-declared}"
-    else:
-        error = f"Missing libraries: {declared-existing}"
+    declared = {
+        re.split("(==|>=|<=>|<|)", name)[0]
+        for name in out.stdout.decode('utf8').split("\n")
+        if name and not name.startswith('-')
+    }
 
-        if existing != declared:
-            msg = f"""Requirements file not updated.
+    if existing != declared:
+        msg = """Requirements file not updated.
+Run 'make requiremets'
+""".format(' '.join(cmd), f)
+        raise DistutilsError(msg)
 
-    {error}
-
-    To fix run:
-
-    {' '.join(cmd)} > {f}
-
-    """
-            raise DistutilsError(msg)
-
-#     if existing != declared:
-#         msg = """Requirements file not updated.
-# Run 'make requiremets'
-# """.format(' '.join(cmd), f)
-#         raise DistutilsError(msg)
 
 class SDistCommand(BaseSDistCommand):
-
     def run(self):
         checks = {'install.pip': ['pipenv', 'lock', '--requirements'],
                   'testing.pip': ['pipenv', 'lock', '-d', '--requirements']}
 
         for filename, cmd in checks.items():
-            check (cmd, filename)
+            check(cmd, filename)
         super().run()
 
 
@@ -112,7 +98,7 @@ setup(name=NAME,
           'Intended Audience :: Developers'],
       scripts=[],
       cmdclass={
-          # 'sdist': SDistCommand,
+          'sdist': SDistCommand,
           "verify": VerifyTagVersion,
       }
 )
