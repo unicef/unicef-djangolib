@@ -10,4 +10,4 @@ exclude_lines =
 
 [html]
 directory = build/coverage
-title = Validator Coverage report
+title = UNICEF Djangolib Coverage report
