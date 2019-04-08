@@ -1,4 +1,4 @@
-from demo.forms import DemoForm
+from demo.sample.forms import DemoForm
 
 
 def test_auto_size_text_forms():

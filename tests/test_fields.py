@@ -2,9 +2,9 @@ from django.db import connection
 
 import pytest
 
+from tests.factories import ImageFactory
 from unicef_djangolib.fields import CurrencyField, QuarterField
 
-from demo.factories import ImageFactory
 from demo.sample.models import Author, Image
 
 pytestmark = pytest.mark.django_db
