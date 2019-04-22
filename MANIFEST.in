@@ -2,12 +2,10 @@ include README.md
 include CHANGES
 include LICENSE
 include MANIFEST.in
-include tox.ini
 include Pipfile.lock
 include Pipfile
 include src
 
-exclude .tox
 exclude .jshintrc
 exclude Makefile
 exclude manage.py
