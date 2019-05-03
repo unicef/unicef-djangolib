@@ -4,20 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
-django-fsm = "*"
-django-model-utils = "*"
+"." = "*"
+unicef-djangolib = {path = "."}
 
 [dev-packages]
-factory-boy = "*"
-"flake8" = "*"
-isort = "*"
-pytest = "*"
-pytest-cov = "*"
-pytest-django = "*"
-pytest-echo = "*"
-pytest-pythonpath = "*"
-pdbpp = "*"
+".[test]" = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3"

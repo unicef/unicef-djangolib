@@ -48,14 +48,6 @@ lint:
 	flake8 src/ tests/; exit 0;
 	isort src/ tests/ --check-only -rc; exit 0;
 
-
-requirements:
-	pipenv lock -r > src/requirements/install.pip
-	pipenv lock -r -d > src/requirements/testing.pip
-	sed -i "" 's/\(.*\)==.*/\1/g' src/requirements/install.pip && sed -i "" '1d' src/requirements/install.pip
-	sed -i "" 's/\(.*\)==.*/\1/g' src/requirements/testing.pip && sed -i "" '1d' src/requirements/testing.pip
-
-
 test:
 	pytest tests/ src/ \
             --cov=unicef_djangolib \
