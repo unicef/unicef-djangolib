@@ -5,10 +5,10 @@ name = "pypi"
 
 [packages]
 "." = "*"
-unicef-djangolib = {path = "."}
 
 [dev-packages]
-".[test]" = "*"
+"." = "*"
+unicef-djangolib = {extras = ["test"],path = "."}
 
 [requires]
 python_version = "3"
