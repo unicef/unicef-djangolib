@@ -51,7 +51,7 @@ def test_coded_generic_relation(author):
     ).exists() is True
     assert Author.objects.filter(
         profile_image__name="wrong_sample.pdf"
-    ).exists() is True
+    ).exists() is False
 
     # test prefetching
     author_prefetched = Author.objects.filter(pk=author.pk).prefetch_related('profile_image').get()
