@@ -14,7 +14,7 @@ CURRENCY_LIST = [
     u'KGS', u'SHP', u'BGN', u'TOP', u'MVR', u'VEF02', u'TMT', u'GMD', u'MZN', u'RSD', u'MWK', u'PGK', u'MXN', u'XAF',
     u'VND', u'INR', u'NOK', u'XPF', u'SSP', u'IQD', u'SRD', u'SAR', u'XCD', u'IRR', u'KPW01', u'HTG', u'IDR', u'XOF',
     u'ISK', u'ANG', u'NAD', u'MMK', u'STD', u'VUV', u'LSL', u'SVC', u'KHR', u'SZL', u'RUB', u'UAH', u'UGX', u'THB',
-    u'AOA', u'YER', u'USD', u'UZS', u'OMR', u'SBD', u'TZS', u'SDG', u'WST', u'QAR', u'MOP', u'MRO', u'VEF', u'TRY',
+    u'AOA', u'YER', u'USD', u'UZS', u'OMR', u'SBD', u'TZS', u'SDG', u'WST', u'QAR', u'MOP', u'MRU', u'VEF', u'TRY',
     u'ZAR', u'HUF', u'MUR', u'PHP', u'BYN', u'KRW', u'TND', u'MNT', u'PEN'
 ]
 
