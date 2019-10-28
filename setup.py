@@ -54,7 +54,6 @@ setup(name=NAME,
       platforms=['any'],
       classifiers=[
           'Environment :: Web Environment',
-          'Programming Language :: Python :: 3.6',
           'Programming Language :: Python :: 3.7',
           'Programming Language :: Python :: 3.8',
           'Framework :: Django',
