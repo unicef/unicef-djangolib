@@ -61,6 +61,13 @@ def coded_create_reverse_many_to_one_manager(superclass, rel):
             if rel.field.code:
                 self.core_filters[rel.field.code_field] = rel.field.code
 
+        def get_prefetch_queryset(self, *args, **kwargs):
+            rel_qs, rel_obj_attr, instance_attr, single, cache_name, is_descriptor = (
+                super().get_prefetch_queryset(*args, **kwargs))
+
+            rel_qs = rel_qs.filter(**{rel.field.code_field: rel.field.code})
+            return rel_qs, rel_obj_attr, instance_attr, single, cache_name, is_descriptor
+
     return RelatedManager
 
 
