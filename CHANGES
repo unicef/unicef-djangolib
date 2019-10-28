@@ -1,3 +1,10 @@
+Release 0.6 (in development)
+----------------
+* fixed for prefetch with coded generic relation
+* added support for python 3.8
+* dropped support for python 3.6
+
+
 Release 0.5.2
 ----------------
 * removed YER1 currency
