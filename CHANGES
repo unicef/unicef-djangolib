@@ -1,3 +1,8 @@
+Release 0.5.4
+-------------
+* Increase size of currency field to 5 chars
+
+
 Release 0.5.2
 ----------------
 * Update Mauritania currency (MRO -> MRU)
