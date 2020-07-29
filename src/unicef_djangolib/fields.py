@@ -24,7 +24,7 @@ CURRENCIES = Choices(*[(c, c) for c in CURRENCY_LIST])
 class CurrencyField(models.CharField):
 
     def __init__(self, *args, **kwargs):
-        kwargs['max_length'] = kwargs.get('max_length', 4)
+        kwargs['max_length'] = kwargs.get('max_length', 5)
         kwargs['choices'] = CURRENCIES
         kwargs['null'] = kwargs.get('null', False)
         kwargs['blank'] = kwargs.get('blank', True)
