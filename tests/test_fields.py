@@ -30,7 +30,7 @@ def test_coded_generic_relation(author):
     assert image_qs.exists() is False
 
     # this image shouldn't appear in querysets as it doesn't contain code
-    _wrong_image = ImageFactory(
+    ImageFactory(
         name="wrong_sample.pdf",
         content_object=author,
     )
@@ -43,7 +43,7 @@ def test_coded_generic_relation(author):
 
     assert image_qs.exists() is True
     assert author.profile_image.first() == image
-    assert author.profile_image.count() == 1 # only correct image should appear in profile
+    assert author.profile_image.count() == 1  # only correct image should appear in profile
 
     # test filtering
     assert Author.objects.filter(
