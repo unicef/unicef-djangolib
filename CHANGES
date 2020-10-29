@@ -1,3 +1,12 @@
+Release 0.6 (in development)
+----------------
+* fixed for prefetch with coded generic relation
+* added support for python 3.8, 3.9
+* dropped support for python 3.6
+* added support for django 3.0 and 3.1
+* dropped support for django 2.1
+
+
 Release 0.5.4
 -------------
 * Increase size of currency field to 5 chars
@@ -8,10 +17,6 @@ Release 0.5.2
 * Update Mauritania currency (MRO -> MRU)
 * Add Django 2.2 and Python 3.7 support
 * Standardize library
-
-
-Release 0.5.2
-----------------
 * removed YER1 currency
 
 
