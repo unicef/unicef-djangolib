@@ -1,8 +1,8 @@
 from django.db import connection
-from tests.factories import ImageFactory
 
 import pytest
 
+from tests.factories import ImageFactory
 from unicef_djangolib.fields import CURRENCIES, CurrencyField, QuarterField
 
 from demo.sample.models import Author, Image
