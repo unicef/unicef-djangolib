@@ -4,18 +4,18 @@ from django.utils.functional import cached_property
 from model_utils import Choices
 
 CURRENCY_LIST = [
-    u'GIP', u'KPW', u'XEU', u'BHD', u'BIF', u'BMD', u'BSD', u'AFN', u'ALL', u'AMD', u'AUD', u'AZN', u'BAM',
-    u'BBD', u'BDT', u'BZD', u'CUP1', u'BTN', u'ZWL', u'AWG', u'CUC', u'VEF01', u'BND', u'BRL', u'ARS', u'ETB', u'EUR',
-    u'FJD', u'GBP', u'GEL', u'GHS', u'GNF', u'GTQ', u'GYD', u'HNL', u'CAD', u'CDF', u'CLP', u'CNY', u'COP', u'CRC',
-    u'CUP', u'CVE', u'DJF', u'DKK', u'DOP', u'DZD', u'EGP', u'HRK', u'LVL', u'LYD', u'MAD', u'MGA', u'MKD', u'KWD',
-    u'KYD', u'LBP', u'LKR', u'MDL', u'KZT', u'LRD', u'BOB', u'HKD', u'CHF', u'KES', u'MYR', u'NGN', u'KMF', u'SCR',
-    u'SEK', u'TTD', u'PKR', u'NIO', u'RWF', u'BWP', u'JMD', u'TJS', u'UYU', u'RON', u'PYG', u'SYP', u'LAK', u'ERN',
-    u'SLL', u'PLN', u'JOD', u'ILS', u'AED', u'NPR', u'NZD', u'SGD', u'JPY', u'PAB', u'ZMW', u'CZK', u'SOS', u'LTL',
-    u'KGS', u'SHP', u'BGN', u'TOP', u'MVR', u'VEF02', u'TMT', u'GMD', u'MZN', u'RSD', u'MWK', u'PGK', u'MXN', u'XAF',
-    u'VND', u'INR', u'NOK', u'XPF', u'SSP', u'IQD', u'SRD', u'SAR', u'XCD', u'IRR', u'KPW01', u'HTG', u'IDR', u'XOF',
-    u'ISK', u'ANG', u'NAD', u'MMK', u'STD', u'VUV', u'LSL', u'SVC', u'KHR', u'SZL', u'RUB', u'UAH', u'UGX', u'THB',
-    u'AOA', u'YER', u'USD', u'UZS', u'OMR', u'SBD', u'TZS', u'SDG', u'WST', u'QAR', u'MOP', u'MRU', u'VEF', u'TRY',
-    u'ZAR', u'HUF', u'MUR', u'PHP', u'BYN', u'KRW', u'TND', u'MNT', u'PEN'
+    'GIP', 'KPW', 'XEU', 'BHD', 'BIF', 'BMD', 'BSD', 'AFN', 'ALL', 'AMD', 'AUD', 'AZN', 'BAM',
+    'BBD', 'BDT', 'BZD', 'CUP1', 'BTN', 'ZWL', 'AWG', 'CUC', 'VEF01', 'BND', 'BRL', 'ARS', 'ETB', 'EUR',
+    'FJD', 'GBP', 'GEL', 'GHS', 'GNF', 'GTQ', 'GYD', 'HNL', 'CAD', 'CDF', 'CLP', 'CNY', 'COP', 'CRC',
+    'CUP', 'CVE', 'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'HRK', 'LVL', 'LYD', 'MAD', 'MGA', 'MKD', 'KWD',
+    'KYD', 'LBP', 'LKR', 'MDL', 'KZT', 'LRD', 'BOB', 'HKD', 'CHF', 'KES', 'MYR', 'NGN', 'KMF', 'SCR',
+    'SEK', 'TTD', 'PKR', 'NIO', 'RWF', 'BWP', 'JMD', 'TJS', 'UYU', 'RON', 'PYG', 'SYP', 'LAK', 'ERN',
+    'SLL', 'PLN', 'JOD', 'ILS', 'AED', 'NPR', 'NZD', 'SGD', 'JPY', 'PAB', 'ZMW', 'CZK', 'SOS', 'LTL',
+    'KGS', 'SHP', 'BGN', 'TOP', 'MVR', 'VEF02', 'TMT', 'GMD', 'MZN', 'RSD', 'MWK', 'PGK', 'MXN', 'XAF',
+    'VND', 'INR', 'NOK', 'XPF', 'SSP', 'IQD', 'SRD', 'SAR', 'XCD', 'IRR', 'KPW01', 'HTG', 'IDR', 'XOF',
+    'ISK', 'ANG', 'NAD', 'MMK', 'STD', 'VUV', 'LSL', 'SVC', 'KHR', 'SZL', 'RUB', 'UAH', 'UGX', 'THB',
+    'AOA', 'YER', 'USD', 'UZS', 'OMR', 'SBD', 'TZS', 'SDG', 'WST', 'QAR', 'MOP', 'MRU', 'VEF', 'TRY',
+    'ZAR', 'HUF', 'MUR', 'PHP', 'BYN', 'KRW', 'TND', 'MNT', 'PEN'
 ]
 
 CURRENCIES = Choices(*[(c, c) for c in CURRENCY_LIST])

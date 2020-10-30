@@ -14,3 +14,6 @@ Pipfile
 Pipfile.lock
 
 .tox/
+.venv/
+.env
+.envrc
