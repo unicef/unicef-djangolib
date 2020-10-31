@@ -3,7 +3,7 @@ from django.db import connection
 import pytest
 
 from tests.factories import ImageFactory
-from unicef_djangolib.fields import CurrencyField, QuarterField
+from unicef_djangolib.fields import CURRENCIES, CurrencyField, QuarterField
 
 from demo.sample.models import Author, Image
 
@@ -12,8 +12,15 @@ pytestmark = pytest.mark.django_db
 
 def test_currency_field():
     f = CurrencyField()
-    assert f.db_parameters(connection)['type'] == 'varchar(4)'
+    assert f.db_parameters(connection)['type'] == 'varchar(5)'
     assert not f.db_parameters(connection)['check']
+
+    # make sure currency list max length matches max length
+    max_length = 0
+    for c, __ in CURRENCIES:
+        if len(c) > max_length:
+            max_length = len(c)
+    assert f.max_length >= max_length
 
 
 def test_quarter_field():
