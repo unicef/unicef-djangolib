@@ -1,0 +1,77 @@
+version: 2
+
+parameters:
+  base-tag:
+    type: string
+    default: "latest"
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "setup.py" }}
+      - run:
+          command: |
+            pip install tox
+            tox
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "setup.py" }}
+          paths:
+            - ".venv"
+            - "~/.cache/pip"
+      - run:
+          name: Running tests
+          command: |
+            pip install tox
+            tox
+      - store_artifacts:
+          path: test-reports/
+          destination: python_app
+  release:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "setup.py" }}
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "setup.py" }}
+          paths:
+            - ".venv"
+            - "~/.cache/pip"
+      - run:
+          name: init .pypirc
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = $PYPI_USERNAME" >> ~/.pypirc
+            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+      - run:
+          name: create packages
+          command: |
+            python setup.py sdist bdist_wheel
+      - run:
+          name: upload to pypi
+          command: |
+            pip install twine
+            twine upload dist/*
+
+
+workflows:
+  version: 2
+  tests_start:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - release:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
