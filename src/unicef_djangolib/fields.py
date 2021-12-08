@@ -96,8 +96,8 @@ class CodedGenericRelation(GenericRelation):
         self.code_field = kwargs.pop('code_field', 'code')
         super().__init__(*args, **kwargs)
 
-    def get_extra_restriction(self, where_class, alias, remote_alias):
-        cond = super().get_extra_restriction(where_class, alias, remote_alias)
+    def get_extra_restriction(self, alias, remote_alias):
+        cond = super().get_extra_restriction(alias, remote_alias)
 
         field = self.remote_field.model._meta.get_field(self.code_field)
         lookup = field.get_lookup('exact')(
