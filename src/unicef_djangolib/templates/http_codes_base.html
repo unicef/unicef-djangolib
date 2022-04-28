@@ -1,0 +1,90 @@
+{% load djangolib %}
+
+<!doctype html>
+<html lang="">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="UNICEF {% html_settings 'NAME' %}" />
+    <title>UNICEF {% html_settings "NAME" %}</title>
+    <meta name="theme-color" content="#2E3AA1">
+
+    {% block extra_head %}
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .medium-tall{
+            padding: 1%;
+            height: 100px;
+            background-color: {% html_settings "BACKGROUND_COLOR" %};
+        }
+
+        .errorContent{
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+            padding-top: 3em;
+        }
+
+        .footer {
+            position: fixed;
+            padding: 1%;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background-color: {% html_settings "BACKGROUND_COLOR" %};
+        }
+
+        .column {
+          float: left;
+        }
+
+        .left {
+          width: 15%;
+        }
+
+        .right {
+          width: 75%;
+        }
+
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+    </style>
+    {% endblock %}
+
+</head>
+
+<body class="fullbleed vertical layout">
+    {% block toolbar %}
+    <div class="medium-tall">
+        <img src="{% html_settings 'HEADER_LEFT_LOGO' %}" width="200px">
+        <img src="{% html_settings 'HEADER_RIGHT_LOGO' %}" width="300px" max-width="120%" align="right"/>
+    </div>
+    {% endblock toolbar %}
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block extra_js %}
+    {% endblock %}
+
+    <footer class="footer row">
+        <div class="column left">
+            <a href="http://www.unicef.org"><img src="{% html_settings 'FOOTER_LOGO' %}" width="113px" height="27px"></a>
+        </div>
+        <div class="column right">
+            <span>© Copyright 2015-{% now "Y" %} UNICEF. All Rights Reserved.</span><br/>
+            <span>{% html_settings "NAME" %}: v{% html_settings "VERSION" %}</span>
+        </div>
+    </footer>
+</body>
+</html>

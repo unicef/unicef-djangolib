@@ -1,6 +1,7 @@
 [run]
 branch = true
 source = unicef_djangolib
+omit =  */templatetags/*
 
 [report]
 fail_under = 90
