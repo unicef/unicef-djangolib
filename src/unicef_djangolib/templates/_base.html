@@ -1,0 +1,41 @@
+{% load djangolib %}
+
+<!doctype html>
+<html lang="">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="UNICEF {% html_settings 'NAME' %}" />
+    <title>UNICEF {% html_settings "NAME" %}</title>
+    <meta name="theme-color" content="#2E3AA1">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .errorContent{
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+            padding-top: 3em;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    {% include "includes/header.html" %}
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block extra_js %}
+    {% endblock %}
+
+    {% include "includes/footer.html" %}
+</body>
+</html>
