@@ -30,6 +30,9 @@
 <body>
     {% include "includes/header.html" %}
 
+    {% html_settings 'HOME_URL_NAME' as home %}
+    {% url home as home_url %}
+
     {% block content %}
     {% endblock content %}
 
