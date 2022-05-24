@@ -34,6 +34,32 @@
     {% url home as home_url %}
 
     {% block content %}
+    <div class="errorContent">
+        <section id="error-container">
+
+            <div class="block-error">
+
+                {% block error %}
+                {% endblock error %}
+
+                {% for message in messages %}
+                    <p class="text-center">{{ message }}</p>
+                {% endfor %}
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="btn btn-info btn-block btn-3d" href="{{ home_url }}">Back to Dashboard</a>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Previous Page</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
     {% endblock content %}
 
     {% block extra_js %}
