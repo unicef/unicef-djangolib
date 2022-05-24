@@ -39,23 +39,22 @@
 
             <div class="block-error">
 
-                {% block error %}
-                {% endblock error %}
+                {% block header %}
+                {% endblock header %}
 
-                {% for message in messages %}
-                    <p class="text-center">{{ message }}</p>
-                {% endfor %}
+                {% block messages %}
+                    {% for message in messages %}
+                        <p class="text-center">{{ message }}</p>
+                    {% endfor %}
+                {% endblock messages %}
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <a class="btn btn-info btn-block btn-3d" href="{{ home_url }}">Back to Dashboard</a>
+                {% block core %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Previous Page</button>
+                        </div>
                     </div>
-                    <br>
-                    <br>
-                    <div class="col-md-6">
-                        <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Previous Page</button>
-                    </div>
-                </div>
+                {% endblock core %}
             </div>
 
         </section>
