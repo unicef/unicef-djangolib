@@ -1,0 +1,14 @@
+{% load djangolib %}
+
+<style>
+    .medium-tall{
+        padding: 1%;
+        height: 100px;
+        background-color: {% html_settings "BACKGROUND_COLOR" %};
+    }
+</style>
+
+<header class="medium-tall">
+    <img src="{% html_settings 'HEADER_LEFT_LOGO' %}" width="200px">
+    <img src="{% html_settings 'HEADER_RIGHT_LOGO' %}" width="300px" max-width="120%" align="right"/>
+</header>
