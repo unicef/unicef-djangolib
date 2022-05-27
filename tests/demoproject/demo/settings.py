@@ -125,3 +125,12 @@ STATIC_URL = '/static/'
 
 
 MEDIA_ROOT = '/tmp/'
+
+# HTML settings
+NAME = os.environ.get('NAME', 'UNICEF eTools')
+VERSION = os.environ.get('VERSION', '')
+BACKGROUND_COLOR = os.environ.get('HEADER_BG_COLOR', '#42515A')
+HEADER_RIGHT_LOGO = os.environ.get('HEADER_RIGHT_LOGO', '')
+HEADER_LEFT_LOGO = os.environ.get('HEADER_LEFT_LOGO', '')
+FOOTER_LOGO = os.environ.get('FOOTER_LOGO', '')
+HOME_URL_NAME = os.environ.get('HOME_URL_NAME', 'home')

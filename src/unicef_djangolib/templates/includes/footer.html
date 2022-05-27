@@ -1,0 +1,40 @@
+{% load djangolib %}
+
+<style>
+    .footer {
+        position: fixed;
+        padding: 1%;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        background-color: {% html_settings "BACKGROUND_COLOR" %};
+    }
+    .column {
+      float: left;
+    }
+
+    .left {
+    }
+
+    .right {
+      padding: 0px 10px 10px 10px;
+      width: 75%;
+      color: #ffffff;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+</style>
+
+<footer class="footer row">
+    <div class="column left">
+        <a href="http://www.unicef.org"><img src="{% html_settings 'FOOTER_LOGO' %}" width="113px" height="27px"></a>
+    </div>
+    <div class="column right">
+        <span>© Copyright 2015-{% now "Y" %} UNICEF. All Rights Reserved.</span><br/>
+        <span>{% html_settings "NAME" %}: v{% html_settings "VERSION" %}</span>
+    </div>
+</footer>

@@ -1,0 +1,69 @@
+{% load djangolib %}
+
+<!doctype html>
+<html lang="">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="UNICEF {% html_settings 'NAME' %}" />
+    <title>UNICEF {% html_settings "NAME" %}</title>
+    <meta name="theme-color" content="#2E3AA1">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .errorContent{
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+            padding-top: 3em;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    {% include "includes/header.html" %}
+
+    {% html_settings 'HOME_URL_NAME' as home %}
+    {% url home as home_url %}
+
+    {% block content %}
+    <div class="errorContent">
+        <section id="error-container">
+
+            <div class="block-error">
+
+                {% block header %}
+                {% endblock header %}
+
+                {% block messages %}
+                    {% for message in messages %}
+                        <p class="text-center">{{ message }}</p>
+                    {% endfor %}
+                {% endblock messages %}
+
+                {% block core %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Previous Page</button>
+                        </div>
+                    </div>
+                {% endblock core %}
+            </div>
+
+        </section>
+    </div>
+    {% endblock content %}
+
+    {% block extra_js %}
+    {% endblock %}
+
+    {% include "includes/footer.html" %}
+</body>
+</html>

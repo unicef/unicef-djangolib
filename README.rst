@@ -22,6 +22,16 @@ Add ``unicef_djangolib`` to ``INSTALLED_APPS`` in settings
         'unicef_djangolib',
     ]
 
+Configure the html elements for display:
+
+.. code-block:: bash
+
+    NAME = os.environ.get('NAME', 'default_name')
+    VERSION = os.environ.get('VERSION', 'default_version')
+    BACKGROUND_COLOR = os.environ.get('HEADER_BG_COLOR', '#42515A')
+    HEADER_RIGHT_LOGO = os.environ.get('HEADER_RIGHT_LOGO', "/static/images/default_right.svg")
+    HEADER_LEFT_LOGO = os.environ.get('HEADER_LEFT_LOGO', "/static/images/default_left.svg")
+    FOOTER_LOGO = os.environ.get('FOOTER_LOGO', "/static/images/default_footer_logo.png")
 
 Usage
 -----
