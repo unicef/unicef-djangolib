@@ -10,7 +10,7 @@ CURRENCY_LIST = [
     'CUP', 'CVE', 'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'HRK', 'LVL', 'LYD', 'MAD', 'MGA', 'MKD', 'KWD',
     'KYD', 'LBP', 'LKR', 'MDL', 'KZT', 'LRD', 'BOB', 'HKD', 'CHF', 'KES', 'MYR', 'NGN', 'KMF', 'SCR',
     'SEK', 'TTD', 'PKR', 'NIO', 'RWF', 'BWP', 'JMD', 'TJS', 'UYU', 'RON', 'PYG', 'SYP', 'LAK', 'ERN',
-    'SLL', 'PLN', 'JOD', 'ILS', 'AED', 'NPR', 'NZD', 'SGD', 'JPY', 'PAB', 'ZMW', 'CZK', 'SOS', 'LTL',
+    'SLE', 'PLN', 'JOD', 'ILS', 'AED', 'NPR', 'NZD', 'SGD', 'JPY', 'PAB', 'ZMW', 'CZK', 'SOS', 'LTL',
     'KGS', 'SHP', 'BGN', 'TOP', 'MVR', 'VEF02', 'TMT', 'GMD', 'MZN', 'RSD', 'MWK', 'PGK', 'MXN', 'XAF',
     'VND', 'INR', 'NOK', 'XPF', 'SSP', 'IQD', 'SRD', 'SAR', 'XCD', 'IRR', 'KPW01', 'HTG', 'IDR', 'XOF',
     'ISK', 'ANG', 'NAD', 'MMK', 'STD', 'VUV', 'LSL', 'SVC', 'KHR', 'SZL', 'RUB', 'UAH', 'UGX', 'THB',
