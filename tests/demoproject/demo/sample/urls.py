@@ -1,4 +1,3 @@
 app_name = "sample"
 
-urlpatterns = (
-)
+urlpatterns = ()

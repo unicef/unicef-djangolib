@@ -12,8 +12,8 @@ pytestmark = pytest.mark.django_db
 
 def test_currency_field():
     f = CurrencyField()
-    assert f.db_parameters(connection)['type'] == 'varchar(5)'
-    assert not f.db_parameters(connection)['check']
+    assert f.db_parameters(connection)["type"] == "varchar(5)"
+    assert not f.db_parameters(connection)["check"]
 
     # make sure currency list max length matches max length
     max_length = 0
@@ -25,15 +25,13 @@ def test_currency_field():
 
 def test_quarter_field():
     f = QuarterField()
-    assert f.db_parameters(connection)['type'] == 'varchar(2)'
-    assert not f.db_parameters(connection)['check']
+    assert f.db_parameters(connection)["type"] == "varchar(2)"
+    assert not f.db_parameters(connection)["check"]
 
 
 def test_coded_generic_relation(author):
     assert author.profile_image.exists() is False
-    image_qs = Image.objects.filter(
-        code="author_profile_image"
-    )
+    image_qs = Image.objects.filter(code="author_profile_image")
     assert image_qs.exists() is False
 
     # this image shouldn't appear in querysets as it doesn't contain code
@@ -53,14 +51,10 @@ def test_coded_generic_relation(author):
     assert author.profile_image.count() == 1  # only correct image should appear in profile
 
     # test filtering
-    assert Author.objects.filter(
-        profile_image__name="sample.pdf"
-    ).exists() is True
-    assert Author.objects.filter(
-        profile_image__name="wrong_sample.pdf"
-    ).exists() is False
+    assert Author.objects.filter(profile_image__name="sample.pdf").exists() is True
+    assert Author.objects.filter(profile_image__name="wrong_sample.pdf").exists() is False
 
     # test prefetching
-    author_prefetched = Author.objects.filter(pk=author.pk).prefetch_related('profile_image').get()
+    author_prefetched = Author.objects.filter(pk=author.pk).prefetch_related("profile_image").get()
     assert author_prefetched.profile_image.all()[0] == image
     assert len(author_prefetched.profile_image.all()) == 1

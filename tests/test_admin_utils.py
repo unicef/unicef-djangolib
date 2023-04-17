@@ -8,4 +8,4 @@ pytestmark = pytest.mark.django_db
 
 def test_admin_reverse():
     admin_url = admin_reverse(DemoModelFactory())
-    assert admin_url == '/admin/sample/demomodel/'
+    assert admin_url == "/admin/sample/demomodel/"

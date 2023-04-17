@@ -50,4 +50,4 @@ class UserFactory(factory.django.DjangoModelFactory):
 class PermissionFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Permission
-        django_get_or_create = ("codename", )
+        django_get_or_create = ("codename",)

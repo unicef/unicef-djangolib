@@ -4,7 +4,6 @@ from demo.sample.models import DemoModel
 
 
 class DemoForm(AutoSizeTextForm):
-
     class Meta:
         model = DemoModel
-        fields = '__all__'
+        fields = "__all__"

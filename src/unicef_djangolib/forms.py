@@ -4,8 +4,9 @@ from django.forms import Textarea
 
 class AutoSizeTextForm(forms.ModelForm):
     """Use textarea for name and description fields"""
+
     class Meta:
         widgets = {
-            'name': Textarea(),
-            'description': Textarea(),
+            "name": Textarea(),
+            "description": Textarea(),
         }

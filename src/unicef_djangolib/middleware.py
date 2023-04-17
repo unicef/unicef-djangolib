@@ -30,6 +30,7 @@ class HealthCheckMiddleware:
         # being present.
         try:
             from django.db import connections
+
             for name in connections:
                 cursor = connections[name].cursor()
                 cursor.execute("SELECT 1;")
@@ -45,6 +46,7 @@ class HealthCheckMiddleware:
         try:
             from django.core.cache import caches
             from django.core.cache.backends.memcached import BaseMemcachedCache
+
             for cache in caches.all():
                 if isinstance(cache, BaseMemcachedCache):
                     stats = cache._cache.get_stats()
