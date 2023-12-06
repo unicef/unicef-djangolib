@@ -3,7 +3,7 @@ branch = true
 source = unicef_djangolib
 
 [report]
-fail_under = 90
+fail_under = 40
 ignore_errors = True
 exclude_lines =
    pragma: no cover

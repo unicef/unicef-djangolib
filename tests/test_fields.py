@@ -56,5 +56,5 @@ def test_coded_generic_relation(author):
 
     # test prefetching
     author_prefetched = Author.objects.filter(pk=author.pk).prefetch_related("profile_image").get()
-    assert author_prefetched.profile_image.all()[0] == image
     assert len(author_prefetched.profile_image.all()) == 1
+    assert author_prefetched.profile_image.all()[0] == image

@@ -1,3 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "unicef-djangolib"
+dynamic = ["version"]
+description = "Django package that handles exporting of data"
+readme = "README.rst"
+license = "Apache-2.0 OR MIT"
+authors = [
+    { name = "UNICEF", email = "dev@unicef.org" },
+]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 3.2",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "Django",
+    "django-fsm",
+    "django-model-utils",
+    "setuptools"  # temporart for python 3.12
+]
+
+[project.optional-dependencies]
+test = [
+    "black",
+    "factory-boy",
+    "flake8",
+    "isort",
+    "pdbpp",
+    "pytest",
+    "pytest-cov",
+    "pytest-django",
+    "pytest-echo",
+]
+
+[project.urls]
+Homepage = "https://github.com/unicef/unicef-djangolib"
+
+[tool.hatch.version]
+path = "src/unicef_djangolib/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["/src/unicef_djangolib"]
+
 [tool.black]
 line-length = 120
 exclude = '''
